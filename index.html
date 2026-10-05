@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="RayOcc models multiple occupied regions along camera rays using Gaussian mixture intensity for camera-only 3D semantic occupancy prediction.">
+  <meta name="keywords" content="RayOcc, 3D occupancy prediction, Gaussian mixture model, occlusion, nuScenes">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RayOcc: Occlusion-Aware Ray Occupancy Estimation via Gaussian Mixture Intensity</title>
+
+<link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/cilab.png">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-3 publication-title">RayOcc: Occlusion-Aware Ray Occupancy Estimation via Gaussian Mixture Intensity</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://junho2000.github.io/">Junho Kim</a>,</span>
+            <span class="author-block">
+              <a href="https://sungonce.github.io/">Seongwon Lee</a></span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">Kookmin University</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/2607.17660"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2607.17660"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code (Coming Soon)</span>
+                  </a>
+              </span>
+              <!-- Poster. -->
+              <span class="link-block">
+                <a href="static/images/poster.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Poster</span>
+                  </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <video id="teaser" autoplay controls muted loop playsinline preload="auto" height="100%">
+        <source src="./static/videos/video.mp4"
+                type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Camera-only 3D semantic occupancy prediction
+            aims to infer voxel-wise scene semantics from multi-view
+            images, yet remains fundamentally challenging due to depth
+            ambiguity and occlusion. Along a single camera ray, multiple
+            spatially separated surfaces may coexist, making occupancy
+            inherently a multi-label existence problem rather than a single-
+            depth estimation task.
+          </p>
+          <p>
+            However, most existing approaches favor
+            a single dominant depth hypothesis per ray, limiting their ability
+            to model volumetric scenes under complex occlusion. To address
+            this limitation, we introduce RayOcc, an occlusion-aware ray
+            occupancy framework that reformulates ray modeling as multi-
+            label existence prediction
+          </p>
+          <img class="section-image motivation-image" src="./static/images/abstract.png" alt="RayOcc Motivation"/>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Method. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Method</h2>
+        <div class="content has-text-justified">
+          <p>
+            Multi-view images are encoded into per-ray features and concatenated with ray encoding.
+            A Mixture Intensity Network predicts ray-wise mixture parameters, which are converted into multi-label ray occupancy
+            probabilities via Poisson probability modeling. The predicted mixture weights are used for adaptive sampling to initialize a
+            compact set of semantic 3D Gaussians, which are refined and rasterized to produce the final 3D semantic occupancy grid.
+          </p>
+          <img class="section-image" src="./static/images/method.png" alt="RayOcc architecture"/>
+        </div>.....
+      </div>
+    </div>
+    <!--/ Method. -->
+
+    <!-- Qualitative Comparison. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Qualitative Comparison</h2>
+        <div class="content has-text-justified">
+          <p>
+            Compared with VG3T, RayOcc better preserves partially occluded objects and produces more continuous geometry around object boundaries.
+          </p>
+          <p>
+            Maintaining several depth hypotheses per ray improves surface coverage behind occluders and reduces spurious predictions near thin structures.
+          </p>
+
+          <img class="section-image" src="./static/images/comparison.png" alt="RayOcc and VG3T qualitative comparison"/>
+        </div>
+      </div>
+    </div>
+    <!--/ Qualitative Comparison. -->
+  </div>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{kim2026rayoccocclusionawarerayoccupancy,
+  author    = {Junho Kim and Seongwon Lee},
+  title     = {RayOcc: Occlusion-Aware Ray Occupancy Estimation via Gaussian Mixture Intensity},
+  journal   = {arXiv preprint arXiv:2607.17660},
+  year      = {2026},
+  eprint    = {2607.17660},
+  archivePrefix = {arXiv},
+  primaryClass = {cs.CV},
+  note      = {Accepted to IROS 2026},
+  url       = {https://arxiv.org/abs/2607.17660},
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="https://arxiv.org/pdf/2607.17660">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/junho2000" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This webpage template is adapted from <a
+              href="https://github.com/nerfies/nerfies.github.io">Nerfies,</a>
+            under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0 License</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
